@@ -1,16 +1,52 @@
-# 🛡️ Phishing Investigation Playbook
+# 📧 SOC Phishing Email Investigation Playbook
 
-## 📖 Overview
 
-This playbook provides a structured methodology for investigating phishing emails, suspicious URLs, domains, IP addresses, and attachments.
+
+
+\
+
+**A practical guide for Security Operations Center (SOC) analysts to investigate Emails, URLs, Domains, IPs, and Malware.**
+
+---
+
+## 📚 Table of Contents
+
+* [Overview](#-overview)
+* [Email Analysis](#-1-email-analysis)
+* [IP Address Analysis](#-2-ip-address-analysis)
+* [URL Analysis](#-3-url-analysis)
+* [File Analysis](#-4-file-analysis)
+* [Malware Analysis Resources](#-5-malware-analysis-resources)
+* [Correlation & Validation](#-6-correlation-and-validation)
+* [Incident Classification](#-7-incident-classification)
+* [Investigation Report Template](#-8-investigation-report-template)
+* [Recommended Analyst Workflow](#-recommended-analyst-workflow)
+
+---
+
+# 📖 Overview
+
+This playbook provides a structured methodology for investigating:
+
+✅ Phishing Emails
+
+✅ Malicious URLs
+
+✅ Suspicious Domains
+
+✅ IP Addresses
+
+✅ Malware Samples
+
+✅ Attachments
 
 The objective is to determine whether an indicator is:
 
-| Verdict | Description |
-|----------|------------|
-| 🟢 Benign | No malicious activity detected |
+| Verdict       | Description                       |
+| ------------- | --------------------------------- |
+| 🟢 Benign     | No malicious activity detected    |
 | 🟡 Suspicious | Requires additional investigation |
-| 🔴 Malicious | Confirmed malicious activity |
+| 🔴 Malicious  | Confirmed malicious activity      |
 
 ---
 
@@ -20,23 +56,23 @@ The objective is to determine whether an indicator is:
 
 Review the complete email header and validate:
 
-- SPF (Sender Policy Framework)
-- DKIM (DomainKeys Identified Mail)
-- DMARC (Domain-based Message Authentication, Reporting, and Conformance)
-- Return-Path
-- Reply-To Address
-- Sender Domain
-- Received Headers
+* SPF (Sender Policy Framework)
+* DKIM (DomainKeys Identified Mail)
+* DMARC (Domain-based Message Authentication, Reporting, and Conformance)
+* Return-Path
+* Reply-To Address
+* Sender Domain
+* Received Headers
 
 ### 🚩 Indicators of Suspicious Activity
 
-| Indicator | Description |
-|------------|------------|
-| SPF Failure | Sender may be spoofed |
-| DKIM Failure | Message integrity issue |
-| DMARC Failure | Authentication failed |
-| Reply-To Mismatch | Possible phishing |
-| Suspicious Routing | Unusual mail path |
+| Indicator               | Description               |
+| ----------------------- | ------------------------- |
+| SPF Failure             | Sender may be spoofed     |
+| DKIM Failure            | Message integrity issue   |
+| DMARC Failure           | Authentication failed     |
+| Reply-To Mismatch       | Possible phishing         |
+| Suspicious Routing      | Unusual mail path         |
 | Newly Registered Domain | Common phishing indicator |
 
 ---
@@ -45,20 +81,20 @@ Review the complete email header and validate:
 
 ### ⏰ Urgency Indicators
 
-- Immediate action required
-- Account suspension warnings
-- Password reset requests
-- Payment requests
-- Executive impersonation
-- Financial requests
+* Immediate action required
+* Account suspension warnings
+* Password reset requests
+* Payment requests
+* Executive impersonation
+* Financial requests
 
 ### 🎭 Social Engineering Indicators
 
-- Credential harvesting attempts
-- Requests for sensitive information
-- Poor grammar and spelling
-- Unexpected attachments
-- Suspicious URLs
+* Credential harvesting attempts
+* Requests for sensitive information
+* Poor grammar and spelling
+* Unexpected attachments
+* Suspicious URLs
 
 ---
 
@@ -68,15 +104,19 @@ Review the complete email header and validate:
 
 ### Questions to Ask
 
-- Does the IP belong to the organization?
-- Does the IP belong to a trusted vendor?
-- Is communication expected?
+* Does the IP belong to the organization?
+* Does the IP belong to a trusted vendor?
+* Is communication expected?
+
+---
 
 ### ✅ If YES
 
-- Verify activity is legitimate
-- Document findings
-- Close the case if no malicious indicators exist
+* Verify activity is legitimate
+* Document findings
+* Close case if no malicious indicators exist
+
+---
 
 ### ❌ If NO
 
@@ -88,27 +128,27 @@ Proceed with a full investigation.
 
 Collect:
 
-- Geolocation
-- ASN
-- ISP
-- Historical reputation
-- Threat intelligence records
+* Geolocation
+* ASN
+* ISP
+* Historical reputation
+* Threat intelligence records
 
 ### 🛠 Tools
 
-| Tool | Purpose |
-|--------|---------|
-| MxToolbox | IP Intelligence |
-| VirusTotal | Reputation |
-| AbuseIPDB | Abuse Reports |
+| Tool       | Purpose         |
+| ---------- | --------------- |
+| MxToolbox  | IP Intelligence |
+| VirusTotal | Reputation      |
+| AbuseIPDB  | Abuse Reports   |
 
-### Review
+### 🚩 Review
 
-- Malicious reports
-- Spam activity
-- Botnet activity
-- Known Command-and-Control (C2) infrastructure
-- Hosting provider reputation
+* Malicious reports
+* Spam activity
+* Botnet activity
+* Known C2 infrastructure
+* Hosting provider reputation
 
 ---
 
@@ -118,18 +158,18 @@ Collect:
 
 ### Tools
 
-| Tool | Purpose |
-|---------|---------|
-| VirusTotal | URL Reputation |
+| Tool                 | Purpose                |
+| -------------------- | ---------------------- |
+| VirusTotal           | URL Reputation         |
 | BlueCoat Site Review | Website Categorization |
-| Zscaler Zulu | URL Classification |
+| Zscaler Zulu         | URL Classification     |
 
 ### Review
 
-- Detection count
-- Vendor classifications
-- Website category
-- Reputation score
+* Detection count
+* Vendor classifications
+* Website category
+* Reputation score
 
 ---
 
@@ -137,19 +177,18 @@ Collect:
 
 ### Tools
 
-| Tool | Purpose |
-|---------|---------|
-| ANY.RUN | Dynamic Analysis |
+| Tool       | Purpose               |
+| ---------- | --------------------- |
+| ANY.RUN    | Dynamic Analysis      |
 | URLScan.io | Website Investigation |
 
 ### Look For
 
-- Credential harvesting pages
-- Fake login portals
-- Malicious redirects
-- Obfuscated JavaScript
-- Malware downloads
-- Drive-by downloads
+* Credential harvesting pages
+* Fake login portals
+* Malicious redirects
+* Obfuscated JavaScript
+* Malware downloads
 
 ---
 
@@ -161,18 +200,18 @@ Collect:
 
 ### Review
 
-- Domain age
-- Registration date
-- Registrar
-- Registrant details
-- Historical WHOIS records
+* Domain age
+* Registration date
+* Registrar
+* Registrant details
+* Historical WHOIS records
 
 ### 🚩 Red Flags
 
-- Newly registered domains
-- Privacy-protected registrations
-- Typosquatting domains
-- Suspicious registrars
+* Newly registered domains
+* Privacy-protected registrations
+* Typosquatting domains
+* Suspicious registrars
 
 ---
 
@@ -180,20 +219,20 @@ Collect:
 
 ### Tools
 
-| Tool | Purpose |
-|---------|---------|
-| URLHaus | Malware URLs |
+| Tool      | Purpose            |
+| --------- | ------------------ |
+| URLHaus   | Malware URLs       |
 | OpenPhish | Phishing Detection |
-| PhishTank | Phishing Database |
+| PhishTank | Phishing Database  |
 
 ### Purpose
 
 Determine whether the URL has previously been reported as:
 
-- Phishing
-- Malware delivery
-- Credential theft
-- Scam infrastructure
+* Phishing
+* Malware delivery
+* Credential theft
+* Scam infrastructure
 
 ---
 
@@ -203,18 +242,18 @@ Determine whether the URL has previously been reported as:
 
 ### Tools
 
-| Tool | Purpose |
-|---------|---------|
-| VirusTotal | Reputation |
-| Hybrid Analysis | Threat Intelligence |
+| Tool            | Purpose                |
+| --------------- | ---------------------- |
+| VirusTotal      | Reputation             |
+| Hybrid Analysis | Threat Intelligence    |
 | Intezer Analyze | Malware Classification |
 
 ### Review
 
-- Detection ratio
-- File type
-- Malware family
-- Community comments
+* Detection ratio
+* File type
+* Malware family
+* Community comments
 
 ---
 
@@ -222,12 +261,12 @@ Determine whether the URL has previously been reported as:
 
 ### Tools
 
-| Tool | Purpose |
-|---------|---------|
-| ANY.RUN | Dynamic Analysis |
-| Joe Sandbox | Malware Analysis |
-| Hybrid Analysis | Threat Analysis |
-| Triage | Behavioral Analysis |
+| Tool            | Purpose             |
+| --------------- | ------------------- |
+| ANY.RUN         | Dynamic Analysis    |
+| Joe Sandbox     | Malware Analysis    |
+| Hybrid Analysis | Threat Analysis     |
+| Triage          | Behavioral Analysis |
 
 ---
 
@@ -235,12 +274,12 @@ Determine whether the URL has previously been reported as:
 
 Review:
 
-- Parent-child process relationships
-- PowerShell execution
-- CMD execution
-- Script interpreters
-- Process injection attempts
-- Suspicious DLL loading
+* Parent-child process relationships
+* PowerShell execution
+* CMD execution
+* Script interpreters
+* Process injection attempts
+* DLL loading
 
 ---
 
@@ -248,11 +287,11 @@ Review:
 
 Review:
 
-- File creation
-- File deletion
-- Dropped payloads
-- Encrypted files
-- Temporary file creation
+* File creation
+* File deletion
+* Dropped payloads
+* Encrypted files
+* Temporary file creation
 
 ---
 
@@ -260,11 +299,11 @@ Review:
 
 Review:
 
-- DNS requests
-- HTTP/HTTPS traffic
-- Command-and-Control (C2) communication
-- Suspicious domains
-- Suspicious IPs
+* DNS requests
+* HTTP/HTTPS traffic
+* C2 communication
+* Suspicious domains
+* Suspicious IPs
 
 ---
 
@@ -272,10 +311,10 @@ Review:
 
 Review:
 
-- Run Keys
-- Startup Entries
-- Service Creation
-- Registry Modifications
+* Run Keys
+* Startup Entries
+* Service Creation
+* Registry Modifications
 
 ---
 
@@ -283,10 +322,10 @@ Review:
 
 Review:
 
-- Scheduled Tasks
-- Services
-- Startup Folder Entries
-- Registry Persistence
+* Scheduled Tasks
+* Services
+* Startup Folders
+* Registry Persistence
 
 ---
 
@@ -294,10 +333,10 @@ Review:
 
 Review:
 
-- New User Creation
-- Token Manipulation
-- UAC Bypass Attempts
-- Administrative Access Changes
+* New User Creation
+* Token Manipulation
+* UAC Bypass Attempts
+* Administrative Access Changes
 
 ---
 
@@ -305,20 +344,26 @@ Review:
 
 ## 🔍 Malware Lookup
 
-- VirusTotal
-- Zelster Malicious Website Lookup
+* VirusTotal
+* Zelster Malicious Website Lookup
+
+---
 
 ## 🧪 Sandboxing Platforms
 
-- ANY.RUN
-- Joe Sandbox
-- Hybrid Analysis
-- Triage
-- Intezer Analyze
+* ANY.RUN
+* Joe Sandbox
+* Hybrid Analysis
+* Triage
+* Intezer Analyze
+
+---
 
 ## 📡 Threat Intelligence Feeds
 
-- Feed Seguranca Informatica
+* Feed Seguranca Informatica
+
+---
 
 ## 🍳 Investigation Utilities
 
@@ -326,12 +371,12 @@ Review:
 
 Useful for:
 
-- Base64 Decoding
-- URL Decoding
-- Hash Generation
-- IOC Extraction
-- Data Transformation
-- Deobfuscation
+* Base64 Decoding
+* URL Decoding
+* Hash Generation
+* IOC Extraction
+* Data Transformation
+* Deobfuscation
 
 ---
 
@@ -339,22 +384,30 @@ Useful for:
 
 Correlate findings across:
 
-- Email
-- Domain
-- URL
-- IP Address
-- Attachment
+📧 Email
+
+🌍 Domain
+
+🔗 URL
+
+🌐 IP Address
+
+📁 Attachment
+
+---
 
 ## ❓ Questions to Answer
 
-- Do indicators appear in multiple intelligence sources?
-- Is the sender legitimate?
-- Is the domain trusted?
-- Is the URL malicious?
-- Is the attachment malicious?
-- Is communication expected?
+* Do indicators appear in multiple intelligence sources?
+* Is the sender legitimate?
+* Is the domain trusted?
+* Is the URL malicious?
+* Is the attachment malicious?
+* Is communication expected?
 
-> **Important**
+---
+
+> ⚠️ **Important**
 >
 > A clean VirusTotal result alone does NOT mean an indicator is safe.
 >
@@ -364,11 +417,11 @@ Correlate findings across:
 
 # 🚦 7. Incident Classification
 
-| Classification | Description |
-|----------------|-------------|
-| 🟢 Benign | Legitimate activity |
-| 🟡 Suspicious | Requires monitoring |
-| 🔴 Malicious | Confirmed threat |
+| Classification | Description         |
+| -------------- | ------------------- |
+| 🟢 Benign      | Legitimate activity |
+| 🟡 Suspicious  | Requires monitoring |
+| 🔴 Malicious   | Confirmed threat    |
 
 ---
 
@@ -376,39 +429,43 @@ Correlate findings across:
 
 ## Case Information
 
-| Field | Value |
-|---------|---------|
-| Case Number | |
-| Analyst | |
-| Date | |
-| Severity | |
+| Field       | Value |
+| ----------- | ----- |
+| Case Number |       |
+| Analyst     |       |
+| Date        |       |
+| Severity    |       |
+
+---
+
+## Indicators
 
 ### Email
 
-- Sender:
-- Subject:
-- SPF:
-- DKIM:
-- DMARC:
+* Sender:
+* Subject:
+* SPF:
+* DKIM:
+* DMARC:
 
 ### URL
 
-- URL:
-- Domain Age:
-- Reputation Result:
+* URL:
+* Domain Age:
+* Reputation Result:
 
 ### IP Address
 
-- IP:
-- ASN:
-- ISP:
-- Reputation Result:
+* IP:
+* ASN:
+* ISP:
+* Reputation Result:
 
 ### File
 
-- File Name:
-- SHA256:
-- Reputation Result:
+* File Name:
+* SHA256:
+* Reputation Result:
 
 ---
 
@@ -432,20 +489,20 @@ Document all evidence collected during the investigation.
 
 ## Verdict
 
-- Benign
-- Suspicious
-- Malicious
+* Benign
+* Suspicious
+* Malicious
 
 ---
 
 ## Recommended Actions
 
-- Block Indicators
-- Quarantine Email
-- Reset Credentials
-- Isolate Host
-- Escalate Incident
-- Continue Monitoring
+* Block Indicators
+* Quarantine Email
+* Reset Credentials
+* Isolate Host
+* Escalate Incident
+* Continue Monitoring
 
 ---
 
@@ -473,8 +530,8 @@ Classification & Reporting
 
 ---
 
-## 🛡️ Think Before You Trust
+### 🛡️ Think Before You Trust
 
-> Trust is earned through verification.
+"Trust is earned through verification."
 
 Built for SOC Analysts, Incident Responders, and Threat Hunters.
