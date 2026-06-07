@@ -3,7 +3,7 @@
 
 
 
-\
+
 
 **A practical guide for Security Operations Center (SOC) analysts to investigate Emails, URLs, Domains, IPs, and Malware.**
 
